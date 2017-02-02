@@ -1,5 +1,5 @@
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  //font-family: 'Monospace', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -34,4 +34,13 @@ a {
 }
 .btn:hover {
   background-color: #7dd2ab;
+}
+
+.well {
+  background-color: #68b793;
+  color: white;
+}
+
+img {
+  max-height: 150px;
 }

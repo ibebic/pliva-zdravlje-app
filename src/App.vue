@@ -2,7 +2,7 @@
   <div id="app">
     <div v-html="rawHtml"></div>
     <img src="./assets/logo.png">
-    <h2 class="well">{{ msg }}</h2>
+    <h3 class="well">{{ msg }}</h3>
     <h4>Essential Links</h4>
     <ul>
       <li><a href="https://vuejs.org" target="_blank" class="btn btn-primary btn-sm">Core Docs</a></li>
