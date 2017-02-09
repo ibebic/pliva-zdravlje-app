@@ -1,5 +1,4 @@
 #app {
-  //font-family: 'Monospace', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -8,11 +7,16 @@
 }
 
 body {
-  background-color: #caf7e3;
+  background-color: #ebefe5;
+  padding-top: 60px;
 }
 
 h1, h2 {
   font-weight: normal;
+}
+
+h4 {
+  color: gray;
 }
 
 ul {
@@ -26,14 +30,16 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: #93b556;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .btn {
-  background-color: #42b983;
+  background-color: #b6d881;
 }
 .btn:hover {
-  background-color: #7dd2ab;
+  background-color: #93b556;
 }
 
 .well {
@@ -42,5 +48,15 @@ a {
 }
 
 img {
-  max-height: 150px;
+  max-height: 60px;
+}
+
+@media screen and (max-width:768px) {
+    .navbar-header {display:none};
+    body {padding-top:120px};
+}
+
+.list-head {
+  color: #969595;
+  font-weight: bold;
 }

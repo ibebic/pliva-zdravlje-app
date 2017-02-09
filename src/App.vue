@@ -1,35 +1,51 @@
 <template>
   <div id="app">
-    <div v-html="rawHtml"></div>
-    <img src="./assets/logo.png">
-    <h3 class="well">{{ msg }}</h3>
-    <h4>Essential Links</h4>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" class="btn btn-primary btn-sm">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" class="btn btn-primary btn-sm">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank" class="btn btn-primary btn-sm">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" class="btn btn-primary btn-sm">Twitter</a></li>
-    </ul>
-    <h4>Ecosystem</h4>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank" class="btn btn-primary btn-sm">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank" class="btn btn-primary btn-sm">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank" class="btn btn-primary btn-sm">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" class="btn btn-primary btn-sm">awesome-vue</a></li>
-    </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <img class="pull-left" src="./assets/logo.png" alt="">
+        </div>
+
+        <div>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!--Content-->
+    <div class="container">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="list-head">
+            <td>#</td>
+            <td>Score</td>
+            <td>Name</td>
+            <td>Description</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in items">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.score }}</td>
+            <td><a :href="item.link" target="_blank">{{ item.name }}</a></td>
+            <td>{{ item.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">{{ name }}</nav>
+
   </div>
+
 </template>
 
-<script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+<script src='./myScript.js'></script>
 
-    }
-  }
-}
-</script>
-
-<style lang="scss">@import "style.scss";</style>
+<style lang="scss">
+  @import "style.scss";
+</style>
