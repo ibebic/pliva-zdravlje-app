@@ -1,7 +1,7 @@
 import moment from 'moment'
 import myName from './fullName.js'
 
-const items = [
+const searchResults = [
   { score: 678, name: 'filezilla', link: 'https://community.linuxmint.com/software/view/filezilla', description: 'Full-featured graphical ftp/ftps/sftp client' },
   { score: 21, name: 'file-roller', link: 'https://community.linuxmint.com/software/view/file-roller', description: 'Archive manager for gnome' },
   { score: 12, name: 'filelight', link: 'https://community.linuxmint.com/software/view/filelight', description: 'Show where your diskspace is being used' },
@@ -15,7 +15,12 @@ export default {
       msg: 'Some Mint stuff',
       date: moment().format('MMMM Do YYYY, h:mm:ss a'),
       name: myName.first + ' ' + myName.last,
-      items: items
+      items: []
+    }
+  },
+  methods: {
+    populate: function () {
+      this.items = searchResults;
     }
   }
 }

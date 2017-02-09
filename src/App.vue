@@ -4,7 +4,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <img class="pull-left" src="./assets/logo.png" alt="">
+          <img id="header-logo" class="pull-left" src="./assets/logo.png" alt="">
         </div>
 
         <div>
@@ -12,7 +12,7 @@
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search">
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button @click.prevent="populate" class="btn btn-primary">Search</button>
           </form>
         </div>
       </div>
@@ -44,7 +44,7 @@
 
 </template>
 
-<script src='./myScript.js'></script>
+<script src='./vueCode.js'></script>
 
 <style lang="scss">
   @import "style.scss";
