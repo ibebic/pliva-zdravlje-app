@@ -38,7 +38,7 @@
         </tbody>
       </table>
     </div>
-    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">{{ name }}</nav>
+    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">{{ footer }}</nav>
 
   </div>
 

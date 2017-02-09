@@ -1,5 +1,4 @@
 import moment from 'moment'
-import myName from './fullName.js'
 
 const searchResults = [
   { score: 678, name: 'filezilla', link: 'https://community.linuxmint.com/software/view/filezilla', description: 'Full-featured graphical ftp/ftps/sftp client' },
@@ -8,13 +7,12 @@ const searchResults = [
   { score: 8, name: '	dphys-swapfile', link: 'https://community.linuxmint.com/software/view/dphys-swapfile', description: 'Autogenerate and use a swap file' }
 ];
 
+
 export default {
   name: 'app',
   data() {
     return {
-      msg: 'Some Mint stuff',
-      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-      name: myName.first + ' ' + myName.last,
+      footer: 'Generic footer message',
       items: []
     }
   },
