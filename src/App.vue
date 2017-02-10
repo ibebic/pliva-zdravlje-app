@@ -10,7 +10,7 @@
         <div>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input id="searchField" type="text" class="form-control" placeholder="Search">
             </div>
             <button @click.prevent="populate" class="btn btn-primary">Search</button>
           </form>
