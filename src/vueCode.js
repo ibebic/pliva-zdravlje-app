@@ -23,10 +23,10 @@ export default {
 
 function searchPackages() {
   //options = options || {};
-  var url = 'https://cors.now.sh/https://community.linuxmint.com/software/search';
+  var url = 'http://cors-anywhere.herokuapp.com/https://community.linuxmint.com/software/search';
   var data = {
-    //search_software_name: options.query,
-    search_software_name: 'file',
+    search_software_name: document.getElementById('searchField').value,
+    //search_software_name: 'file',
     search: 'Search'
   };
 
@@ -41,6 +41,7 @@ function searchPackages() {
 
 function parsePackageListing(html) {
   var $ = cheerio.load(html);
+  debugger;
   var $packageRows = $('tbody tr').slice(1);
 
   var packages = [];
