@@ -4,11 +4,13 @@ import cheerio from 'cheerio'
 import utils from './utils.js'
 import urlJoin from 'url-join'
 
+const baseUrl = 'https://community.linuxmint.com/software/search';
+
 export default {
   name: 'app',
   data() {
     return {
-      footer: 'https://community.linuxmint.com/software/search',
+      footer: baseUrl,
       items: []
     }
   },
@@ -24,11 +26,9 @@ export default {
 }
 
 function searchPackages() {
-  //options = options || {};
-  var url = 'http://cors-anywhere.herokuapp.com/https://community.linuxmint.com/software/search';
+  var url = urlJoin('http://cors-anywhere.herokuapp.com/', baseUrl);
   var data = {
     search_software_name: document.getElementById('searchField').value,
-    //search_software_name: 'file',
     search: 'Search'
   };
 
