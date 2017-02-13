@@ -10,15 +10,16 @@
         <div>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input id="searchField" type="text" class="form-control" placeholder="Search">
+              <input id="searchField" type="text" class="form-control" placeholder="Search packages...">
             </div>
-            <button @click.prevent="populate" class="btn btn-primary">Search</button>
+            <button @click.prevent="populate" class="btn btn-primary">search</button>
           </form>
         </div>
       </div>
     </nav>
     <!--Content-->
-    <div class="container">
+    <h4 id="placeholder">Search Mint software packages</h4>
+    <div id="appTable" class="container">
       <table class="table table-striped table-hover">
         <thead>
           <tr class="list-head">
@@ -38,7 +39,7 @@
         </tbody>
       </table>
     </div>
-    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">{{ footer }}</nav>
+    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">Scraped from <a target="_blank" :href="footer">{{ footer }}</a></nav>
 
   </div>
 

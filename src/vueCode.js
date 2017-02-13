@@ -8,14 +8,16 @@ export default {
   name: 'app',
   data() {
     return {
-      footer: 'Generic footer message',
+      footer: 'https://community.linuxmint.com/software/search',
       items: []
     }
   },
   methods: {
     populate: function () {
-      searchPackages().then (result=>{
+      searchPackages().then(result => {
         this.$set(this, 'items', result.packages)
+        document.getElementById('placeholder').style.display = 'none';
+        document.getElementById('appTable').style.opacity = '1';
       });
     }
   }
