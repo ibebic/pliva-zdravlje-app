@@ -1,14 +1,8 @@
-import moment from 'moment'
-import got from 'got'
 import cheerio from 'cheerio'
 import Promise from 'bluebird'
-import urlJoin from 'url-join'
 import { encode as urlEncode } from 'urlencode'
 import request from 'request'
 const r = Promise.promisifyAll(request.defaults());
-
-import utils from './scripts/utils.js'
-import parseResult from './scripts/parseResult'
 
 const baseUrl = 'http://www.plivazdravlje.hr';
 const searchUrl = '/prirucnik-bolesti?plivahealth%5BchAjaxQuery%5D=';
