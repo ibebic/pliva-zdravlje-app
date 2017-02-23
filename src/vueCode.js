@@ -7,7 +7,6 @@ const r = Promise.promisifyAll(request.defaults());
 const baseUrl = 'http://www.plivazdravlje.hr';
 const searchUrl = '/prirucnik-bolesti?plivahealth%5BchAjaxQuery%5D=';
 const proxy = 'http://cors-anywhere.herokuapp.com/';
-var count = false;
 
 export default {
   name: 'app',
@@ -22,27 +21,34 @@ export default {
       getSearchResults()
         .then(({body}) => {
           let preParsed = preParse(body);
-          let parsed = JSON.parse(preParsed);
-          this.$set(this, 'items', parsed);
-          if (count === false) {
+          if (preParsed != 6) {
+            let parsed = JSON.parse(preParsed);
+            this.$set(this, 'items', parsed);
             document.getElementById('placeholder').style.display = 'none';
             document.getElementById('appTable').style.display = 'block';
             document.getElementById('illnessContent').style.display = 'none';
             document.getElementById('appTable').className = document.getElementById('appTable').className + ' fadeIn';
+          } else {
+            document.getElementById('placeholder').style.display = 'block';
+            document.getElementById('appTable').style.display = 'none';
+            document.getElementById('illnessContent').style.display = 'none';
+            document.getElementById('placeholder').textContent = '0 rezultata';
           }
-          count = true;
         });
     },
     pickOne: function (illnessUrl) {
       r.getAsync(proxy + illnessUrl)
         .then(function ({body}) {
-          if (count === true) {
-            document.getElementById('illnessContent').style.display = 'block';
-            document.getElementById('appTable').style.display = 'none';
-            document.getElementById('illnessContent').innerHTML = getHtml(body);
-          }
-          count = false;
+          document.getElementById('illnessContent').style.display = 'block';
+          document.getElementById('appTable').style.display = 'none';
+          document.getElementById('illnessContent').innerHTML = getHtml(body);
         })
+    },
+    resetState: function () {
+      document.getElementById('placeholder').style.display = 'block';
+      document.getElementById('appTable').style.display = 'none';
+      document.getElementById('illnessContent').style.display = 'none';
+      document.getElementById('placeholder').textContent = 'Rezultati pretrage';
     }
   }
 }
@@ -55,11 +61,10 @@ function getSearchResults() {
 
 function preParse(body) {
   if (body.includes('[{')) {
-    console.log('[{' + body.split('[{')[1].split(']}')[0]);
     return '[{' + body.split('[{')[1].split(']}')[0];
   } else {
     console.log('Pronađeno 0 rezultata');
-    process.exit();
+    return 6;
   }
 }
 

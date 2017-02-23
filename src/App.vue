@@ -4,7 +4,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a href="."><img id="header-logo" class="pull-left" src="./assets/pliva-logo.png" alt=""></a>
+          <a @click.prevent="resetState()"><img id="header-logo" class="pull-left" src="./assets/pliva-logo.png" alt=""></a>
         </div>
 
         <div>
