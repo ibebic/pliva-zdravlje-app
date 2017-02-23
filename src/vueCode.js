@@ -21,18 +21,18 @@ export default {
       getSearchResults()
         .then(({body}) => {
           let preParsed = preParse(body);
-          if (preParsed != 6) {
+            if (preParsed) {
             let parsed = JSON.parse(preParsed);
             this.$set(this, 'items', parsed);
             document.getElementById('placeholder').style.display = 'none';
-            document.getElementById('appTable').style.display = 'block';
             document.getElementById('illnessContent').style.display = 'none';
+            document.getElementById('appTable').style.display = 'block';
             document.getElementById('appTable').className = document.getElementById('appTable').className + ' fadeIn';
           } else {
             document.getElementById('placeholder').style.display = 'block';
-            document.getElementById('appTable').style.display = 'none';
-            document.getElementById('illnessContent').style.display = 'none';
             document.getElementById('placeholder').textContent = '0 rezultata';
+            document.getElementById('illnessContent').style.display = 'none';
+            document.getElementById('appTable').style.display = 'none';
           }
         });
     },
@@ -40,15 +40,15 @@ export default {
       r.getAsync(proxy + illnessUrl)
         .then(function ({body}) {
           document.getElementById('illnessContent').style.display = 'block';
-          document.getElementById('appTable').style.display = 'none';
           document.getElementById('illnessContent').innerHTML = getHtml(body);
+          document.getElementById('appTable').style.display = 'none';
         })
     },
     resetState: function () {
       document.getElementById('placeholder').style.display = 'block';
-      document.getElementById('appTable').style.display = 'none';
-      document.getElementById('illnessContent').style.display = 'none';
       document.getElementById('placeholder').textContent = 'Rezultati pretrage';
+      document.getElementById('illnessContent').style.display = 'none';
+      document.getElementById('appTable').style.display = 'none';
     }
   }
 }
@@ -62,9 +62,6 @@ function getSearchResults() {
 function preParse(body) {
   if (body.includes('[{')) {
     return '[{' + body.split('[{')[1].split(']}')[0];
-  } else {
-    console.log('Pronađeno 0 rezultata');
-    return 6;
   }
 }
 
