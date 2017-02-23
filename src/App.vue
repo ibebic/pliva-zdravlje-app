@@ -4,42 +4,35 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <img id="header-logo" class="pull-left" src="./assets/logo.png" alt="">
+          <a href="."><img id="header-logo" class="pull-left" src="./assets/pliva-logo.png" alt=""></a>
         </div>
 
         <div>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input id="searchField" type="text" class="form-control" placeholder="Search packages...">
+              <input id="searchField" type="text" class="form-control" placeholder="Naziv bolesti...">
             </div>
-            <button @click.prevent="populate" class="btn btn-primary">search</button>
+            <button @click.prevent="populate" class="btn btn-primary">traži</button>
           </form>
         </div>
       </div>
     </nav>
     <!--Content-->
-    <h4 id="placeholder">Search Mint software packages</h4>
+    <h5 id="placeholder">Rezultati pretrage</h5>
+    <div id="illnessContent" class="container"></div>
     <div id="appTable" class="container">
       <table class="table table-striped table-hover">
-        <thead>
-          <tr class="list-head">
-            <td>#</td>
-            <td>Score</td>
-            <td>Name</td>
-            <td>Description</td>
-          </tr>
-        </thead>
         <tbody>
-          <tr v-for="(item, index) in items">
+          <tr class="list-content" v-for="(item, index) in items">
             <td>{{ index + 1 }}</td>
-            <td>{{ item.score }}</td>
-            <td><a :href="item.link" target="_blank">{{ item.name }}</a></td>
-            <td>{{ item.description }}</td>
+            <td>{{ item.name }}</td>
+            <td><a :href="footer + item.url" target="_blank">Izvorišni članak</a></td>
+            <td><button @click.prevent="pickOne(footer+item.url)" class="btn btn-primary">Prikaži</button></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">Scraped from <a target="_blank" :href="footer">{{ footer }}</a></nav>
+    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">Izvor: <a target="_blank" :href="footer">{{ footer }}</a></nav>
 
   </div>
 

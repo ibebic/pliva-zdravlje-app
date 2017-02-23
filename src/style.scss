@@ -1,27 +1,31 @@
-#app, h4 {
+#app, h4, h5 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: darkgray;
+  color: #888585;
   margin-top: 20px;
 }
 
 body {
-  background-color: #ebefe5;
-  padding-top: 65px;
+  background-color: #c5d6ff;
+  padding-top: 60px;
+  padding-bottom: 30px;
 }
 
 a {
-  color: #93b556;
+  color: #224aad;
   font-weight: bold;
   text-decoration: underline;
 }
 
 .btn {
-  background-color: #b6d881;
+  background-color: #1e5593;
 }
 .btn:hover {
-  background-color: #93b556;
+  background-color: #224aad;
+}
+.btn:active {
+  background-color: #224aad;
 }
 
 @media screen and (max-width:768px) {
@@ -30,14 +34,40 @@ a {
 }
 
 .list-head {
-  color: #969595;
+  color: #888585;
   font-weight: bold;
 }
 
-.container {
-  opacity: 0;
+.list-content {
+  max-height: 20px;
+}
+
+#appTable {
+  display: none;
 }
 
 #header-logo {
-  max-height: 60px;
+  max-height: 65px;
+}
+
+.fadeIn {
+    animation: fadeInFromNone 0.5s ease-out;
+}
+
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
 }
