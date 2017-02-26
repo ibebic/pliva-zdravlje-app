@@ -1,4 +1,4 @@
-# mint-portal-2
+# pliva-zdravlje
 
 > A Vue.js project
 
