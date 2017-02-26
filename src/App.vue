@@ -25,14 +25,14 @@
     <disease-viewer
       class="container"
       :disease="selectedDisease"
-      @close="onDiseaseViewerClosed"
+      @close="selectedDisease = null"
       v-show="selectedDisease">
     </disease-viewer>
 
     <disease-table
       class="container"
       :diseases="diseases"
-      @select="onDiseaseSelected"
+      @select="disease => selectedDisease = disease"
       v-show="!selectedDisease">
     </disease-table>
 
@@ -62,12 +62,6 @@ export default {
       let val = document.getElementById('searchField').value
       Diseases.search(val)
         .then(diseases => this.diseases = diseases);
-    },
-    onDiseaseSelected(disease) {
-      this.selectedDisease = disease;
-    },
-    onDiseaseViewerClosed() {
-      this.selectedDisease = null;
     },
     clearSearch() {
       this.diseases = [];
