@@ -1,7 +1,6 @@
 <template>
-  <div
-    class="disease-viewer"
-    v-if="description">
+  <div v-if="description"
+    class="disease-viewer">
     <h2 class="name">{{ disease.name }}</h2>
     <div class="description" v-html="description"></div>
     <button
@@ -9,6 +8,10 @@
       @click.prevent="$emit('close')">
       Close
     </button>
+  </div>
+  <div v-else
+    class="loader">
+    Fetching disease description...
   </div>
 </template>
 

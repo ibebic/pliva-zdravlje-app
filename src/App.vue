@@ -25,7 +25,8 @@
     <disease-viewer
       class="container"
       :disease="selectedDisease"
-      @close="onDiseaseViewerClosed">
+      @close="onDiseaseViewerClosed"
+      v-show="selectedDisease">
     </disease-viewer>
 
     <disease-table
