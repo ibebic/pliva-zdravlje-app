@@ -4,7 +4,10 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <img @click.prevent="resetState()" id="header-logo" class="pull-left" src="./assets/pliva-logo.png" alt="">
+          <img
+            id="header-logo" class="pull-left"
+            src="./assets/pliva-logo.png" alt=""
+            @click.prevent="clearSearch">
         </div>
 
         <div>
@@ -17,28 +20,57 @@
         </div>
       </div>
     </nav>
-    <!--Content-->
-    <h5 id="placeholder">Rezultati pretrage</h5>
-    <div id="illnessContent" class="container"></div>
-    <div id="appTable" class="container">
-      <table class="table table-striped table-hover">
-        <tbody>
-          <tr class="list-content" v-for="(item, index) in items">
-            <td>{{ index + 1 }}</td>
-            <td>{{ item.name }}</td>
-            <td><a :href="footer + item.url" target="_blank">Izvorišni članak</a></td>
-            <td><button @click.prevent="pickOne(footer+item.url)" class="btn btn-primary">Prikaži</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">Izvor: <a target="_blank" :href="footer">{{ footer }}</a></nav>
 
+    <!--Content-->
+    <disease-viewer
+      class="container"
+      :disease="selectedDisease"
+      @close="selectedDisease = null"
+      v-show="selectedDisease">
+    </disease-viewer>
+
+    <disease-table
+      class="container"
+      :diseases="diseases"
+      @select="disease => selectedDisease = disease"
+      v-show="!selectedDisease">
+    </disease-table>
+
+    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">Izvor: <a target="_blank" :href="footer">{{ footer }}</a></nav>
   </div>
 
 </template>
 
-<script src='./vueCode.js'></script>
+<script>
+'use strict';
+
+import Diseases from './lib/Diseases.js';
+import DiseaseViewer from './components/DiseaseViewer.vue';
+import DiseaseTable from './components/DiseaseTable.vue';
+
+export default {
+  name: 'app',
+  data() {
+    return {
+      footer: Diseases.baseUrl,
+      diseases: [],
+      selectedDisease: null
+    };
+  },
+  methods: {
+    populate() {
+      let val = document.getElementById('searchField').value
+      Diseases.search(val)
+        .then(diseases => this.diseases = diseases);
+    },
+    clearSearch() {
+      this.diseases = [];
+    }
+  },
+
+  components: { DiseaseViewer, DiseaseTable }
+};
+</script>
 
 <style lang="scss">
   @import "style.scss";
