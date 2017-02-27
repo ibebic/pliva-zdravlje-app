@@ -2,23 +2,10 @@
   <div id="app">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <img
-            id="header-logo" class="pull-left"
-            src="./assets/pliva-logo.png" alt=""
-            @click.prevent="clearSearch">
-        </div>
-
-        <div>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input id="searchField" type="text" class="form-control" placeholder="Naziv bolesti...">
-            </div>
-            <button @click.prevent="populate" class="btn btn-primary">traži</button>
-          </form>
-        </div>
-      </div>
+      <search-bar
+        class="container-fluid"
+        @search="query => search(query)">
+      </search-bar>
     </nav>
 
     <!--Content-->
@@ -36,7 +23,9 @@
       v-show="!selectedDisease">
     </disease-table>
 
-    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">Izvor: <a target="_blank" :href="footer">{{ footer }}</a></nav>
+    <nav id="footer" class="vbar navbar-default navbar-fixed-bottom">
+      Izvor: <a target="_blank" :href="dataSourceUrl">{{ dataSourceUrl }}</a>
+    </nav>
   </div>
 
 </template>
@@ -45,6 +34,7 @@
 'use strict';
 
 import Diseases from './lib/Diseases.js';
+import SearchBar from './components/SearchBar.vue';
 import DiseaseViewer from './components/DiseaseViewer.vue';
 import DiseaseTable from './components/DiseaseTable.vue';
 
@@ -52,23 +42,22 @@ export default {
   name: 'app',
   data() {
     return {
-      footer: Diseases.baseUrl,
       diseases: [],
-      selectedDisease: null
+      selectedDisease: null,
+      dataSourceUrl: Diseases.baseUrl
     };
   },
   methods: {
-    populate() {
-      let val = document.getElementById('searchField').value
-      Diseases.search(val)
+    search(query) {
+      if (!query) {
+        this.diseases = [];
+        return;
+      }
+      Diseases.search(query)
         .then(diseases => this.diseases = diseases);
-    },
-    clearSearch() {
-      this.diseases = [];
     }
   },
-
-  components: { DiseaseViewer, DiseaseTable }
+  components: { SearchBar, DiseaseViewer, DiseaseTable }
 };
 </script>
 
