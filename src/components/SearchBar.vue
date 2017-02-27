@@ -14,12 +14,12 @@
             class="form-control"
             type="text"
             placeholder="Naziv bolesti..."
-            v-model.trim="searchQuery"
-            @keyup.enter.prevent="$emit('search', searchQuery)">
+            v-model.trim="query"
+            @keyup.enter.prevent="$emit('search', query)">
         </div>
         <button
           class="btn btn-primary"
-          @click.prevent="$emit('search', searchQuery)">
+          @click.prevent="$emit('search', query)">
           traži
         </button>
       </form>
@@ -33,11 +33,11 @@
 export default {
   name: 'search-bar',
   data() {
-    return { searchQuery: null }
+    return { query: null }
   },
   methods: {
     reset() {
-      this.searchQuery = null;
+      this.query = null;
       this.$emit('search');
     }
   }
